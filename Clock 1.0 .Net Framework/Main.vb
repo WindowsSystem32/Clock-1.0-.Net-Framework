@@ -1,8 +1,11 @@
 ﻿Imports System.ComponentModel
 
 Public Class Main
-    Dim dc As Color = Color.Lime
-    Dim lev = 5
+    Dim f1 As Color = Color.FromArgb(0, 255, 0)
+    Dim b1 As Color = Color.FromArgb(0, 0, 0)
+    Dim f2 As Color = Color.FromArgb(255, 0, 255)
+    Dim b2 As Color = Color.FromArgb(255, 255, 255)
+    Dim lev As Integer = 5
     Dim num As Integer() = New Integer(5) {0, 0, 0, 0, 0, 0}
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         setTime(2)
@@ -62,14 +65,14 @@ Public Class Main
         seg(New Point(-292, 0), h3, h1, lev)
         seg(New Point(-188, 0), h4, h2, lev)
         If num(5) Mod 2 = 0 Then
-            fillEllip(dc, -120, -36, 16, 16, 100)
-            fillEllip(dc, -120, 36, 16, 16, 100)
+            fillEllip(f1, -120, -36, 16, 16, 100)
+            fillEllip(f1, -120, 36, 16, 16, 100)
         End If
         seg(New Point(-52, 0), m3, m1, lev)
         seg(New Point(52, 0), m4, m2, lev)
         If num(5) Mod 2 = 0 Then
-            fillEllip(dc, 120, -36, 16, 16, 100)
-            fillEllip(dc, 120, 36, 16, 16, 100)
+            fillEllip(f1, 120, -36, 16, 16, 100)
+            fillEllip(f1, 120, 36, 16, 16, 100)
         End If
         seg(New Point(188, 0), s3, s1, lev)
         seg(New Point(292, 0), s4, s2, lev)
@@ -95,8 +98,18 @@ Public Class Main
         pb.CreateGraphics.FillEllipse(New SolidBrush(col), half_pbwid - half_wid2 + x, half_pbhei - half_hei2 + y, wid2, hei2)
     End Sub
 
+    Private Sub drawImg(img As Image, x As Integer, y As Integer, wid As Integer, hei As Integer, sz As Integer)
+        Dim wid2 As Integer = wid * (sz / 100)
+        Dim hei2 As Integer = hei * (sz / 100)
+        Dim half_wid2 As Integer = wid2 / 2
+        Dim half_hei2 As Integer = hei2 / 2
+        Dim half_pbwid As Integer = pb.Size.Width / 2
+        Dim half_pbhei As Integer = pb.Size.Height / 2
+        pb.CreateGraphics.DrawImage(img, half_pbwid - half_wid2 + x, half_pbhei - half_hei2 + y, wid2, hei2)
+    End Sub
+
     Private Sub clear()
-        pb.CreateGraphics.Clear(pb.BackColor)
+        pb.CreateGraphics.Clear(b1)
     End Sub
 
     Private Sub seg(loc As Point, inf1 As Integer, inf2 As Integer, lev As Integer) 'wid: 88, hei: 184'
@@ -110,20 +123,20 @@ Public Class Main
         Dim sz1 As Integer()
         Dim sz2 As Integer()
         Dim sz3 As Integer()
-        sz1 = segc1(inf1)
-        sz2 = segc1(inf2)
+        sz1 = segf1(inf1)
+        sz2 = segf1(inf2)
         sz3 = segc2(sz1, sz2, lev)
         'sz3 = sz1'
-        fillRect(dc, 0 + sx, -72 + sy + sz3(7), 56, 16, sz3(0)) 'A'
-        fillRect(dc, -36 + sx + sz3(8), -36 + sy, 16, 56, sz3(1)) 'B'
-        fillRect(dc, 36 + sx + sz3(9), -36 + sy, 16, 56, sz3(2)) 'C'
-        fillRect(dc, 0 + sx, 0 + sy, 56, 16, sz3(3)) 'D'
-        fillRect(dc, -36 + sx + sz3(10), 36 + sy, 16, 56, sz3(4)) 'E'
-        fillRect(dc, 36 + sx + sz3(11), 36 + sy, 16, 56, sz3(5)) 'F'
-        fillRect(dc, 0 + sx, 72 + sy + sz3(12), 56, 16, sz3(6)) 'G'
+        fillRect(f1, 0 + sx, -72 + sy + sz3(7), 56, 16, sz3(0)) 'A'
+        fillRect(f1, -36 + sx + sz3(8), -36 + sy, 16, 56, sz3(1)) 'B'
+        fillRect(f1, 36 + sx + sz3(9), -36 + sy, 16, 56, sz3(2)) 'C'
+        fillRect(f1, 0 + sx, 0 + sy, 56, 16, sz3(3)) 'D'
+        fillRect(f1, -36 + sx + sz3(10), 36 + sy, 16, 56, sz3(4)) 'E'
+        fillRect(f1, 36 + sx + sz3(11), 36 + sy, 16, 56, sz3(5)) 'F'
+        fillRect(f1, 0 + sx, 72 + sy + sz3(12), 56, 16, sz3(6)) 'G'
     End Sub
 
-    Private Function segc1(input As Integer)
+    Private Function segf1(input As Integer)
         Dim num1 As Integer = 25
         Dim num2 As Integer = 100
         Dim output As Integer() = New Integer(12) {num2, num2, num2, num2, num2, num2, num2, 0, 0, 0, 0, 0, 0} 'wid1: 56, hei1: 16 | wid2: 14, hei2: 4'
@@ -173,20 +186,22 @@ Public Class Main
 
     Private Function segc2(input1() As Integer, input2() As Integer, lev As Integer)
         Dim output As Integer() = New Integer(12) {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} 'wid1: 56, hei1: 16 | wid2: 14, hei2: 4'
-        For i = 0 To 6
-            If input1(i) = input2(i) Then
-                output(i) = input1(i)
-            Else
-                output(i) = ((input2(i) - input1(i)) / 5) * lev + input1(i)
-            End If
-        Next
-        For i = 7 To 12
-            If input1(i) = input2(i) Then
-                output(i) = input1(i)
-            Else
-                output(i) = ((input2(i) - input1(i)) / 5) * lev + input1(i)
-            End If
-        Next
+        If input1.Length = 13 And input2.Length = 13 Then
+            For i = 0 To 6
+                If input1(i) = input2(i) Then
+                    output(i) = input1(i)
+                Else
+                    output(i) = ((input2(i) - input1(i)) / 5) * lev + input1(i)
+                End If
+            Next
+            For i = 7 To 12
+                If input1(i) = input2(i) Then
+                    output(i) = input1(i)
+                Else
+                    output(i) = ((input2(i) - input1(i)) / 5) * lev + input1(i)
+                End If
+            Next
+        End If
         Return output
     End Function
 
@@ -195,15 +210,15 @@ Public Class Main
         btn_about.Location = New Point(0, Size.Height - 62)
     End Sub
 
-    Private Sub setTime(mode As Integer)
+    Private Sub setTime(n As Integer)
         Dim h As Integer = DateTime.Now.Hour
         Dim m As Integer = DateTime.Now.Minute
         Dim s As Integer = DateTime.Now.Second
-        If mode = 0 Then
+        If n = 0 Then
             num(3) = h
             num(4) = m
             num(5) = s
-        ElseIf mode = 1 Then
+        ElseIf n = 1 Then
             num(0) = h
             num(1) = m
             num(2) = s

@@ -47,6 +47,7 @@ Partial Class Main
         '
         Me.btn_about.BackColor = System.Drawing.Color.Black
         Me.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_about.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_about.ForeColor = System.Drawing.Color.Lime
         Me.btn_about.Location = New System.Drawing.Point(0, 426)
         Me.btn_about.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -58,12 +59,14 @@ Partial Class Main
         '
         'Main
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(800, 449)
         Me.Controls.Add(Me.btn_about)
         Me.Controls.Add(Me.pb)
+        Me.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ForeColor = System.Drawing.Color.Lime
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.MinimumSize = New System.Drawing.Size(688, 246)

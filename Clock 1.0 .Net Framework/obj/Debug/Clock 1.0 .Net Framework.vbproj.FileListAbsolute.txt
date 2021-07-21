@@ -3,7 +3,6 @@ C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\bin
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\bin\Debug\Clock_1._0.Net_Framework.pdb
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\bin\Debug\Clock_1._0.Net_Framework.xml
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock 1.0 .Net Framework.vbproj.AssemblyReference.cache
-C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.Form1.resources
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.Resources.resources
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock 1.0 .Net Framework.vbproj.GenerateResource.cache
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock 1.0 .Net Framework.vbproj.CoreCompileInputs.cache
