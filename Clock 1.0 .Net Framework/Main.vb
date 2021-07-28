@@ -13,8 +13,7 @@ Public Class Main
     Dim num As Integer() = New Integer(5) {0, 0, 0, 0, 0, 0}
     Dim chkUpd As String = "https://raw.githubusercontent.com/WindowsSystem32/Clock-1.0-.Net-Framework/main/ver.md"
     Dim downloadUpd As String = "https://github.com/WindowsSystem32/Clock-1.0-.Net-Framework/raw/main/Clock%201.0%20.Net%20Framework/bin/Debug/Clock_1._0.Net_Framework.exe"
-    Dim upd As Boolean = False
-    Dim updProgress As Integer = 0
+    Dim chkUpdAtStartup As Integer = 0
     Private WithEvents wc As WebClient
     Dim sP As String
     Dim sF As String
@@ -22,6 +21,9 @@ Public Class Main
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         chk_reg()
+        If chkUpdAtStartup = 1 Then
+            CheckForUpdates()
+        End If
         setTime(2)
         tmr1.Start()
         currentVer.Text = "Current version: " & Application.ProductVersion
@@ -326,7 +328,7 @@ Public Class Main
     End Sub
 
     Private Sub wc_DownloadFileCompleted(sender As Object, e As AsyncCompletedEventArgs) Handles wc.DownloadFileCompleted
-        Dim cmd As String = "cmd /C timeout -t 1 && move " & Chr(34) & sP & "\" & sF & Chr(34) & " " & Chr(34) & Application.ExecutablePath & Chr(34) & " && rmdir /s /q " & Chr(34) & sP & Chr(34)
+        Dim cmd As String = "cmd /C timeout -t 1 && move " & Chr(34) & sP & "\" & sF & Chr(34) & " " & Chr(34) & Application.ExecutablePath & Chr(34) & " && rmdir /s /q " & Chr(34) & sP & Chr(34) & " && " & Chr(34) & Application.ExecutablePath & Chr(34)
         'MsgBox("Command: " & cmd)'
         If File.Exists(sP & "\" & sF) Then
             Shell(cmd)
@@ -358,17 +360,33 @@ Public Class Main
         Else
             downloadUpd = reg2.GetValue("download").ToString.Trim
         End If
+        If reg2.GetValue("chkUpdAtStartup") = Nothing Then
+            reg2.SetValue("chkUpdAtStartup", chkUpdAtStartup)
+        Else
+            Try
+                chkUpdAtStartup = Int(reg2.GetValue("chkUpdAtStartup").ToString.Trim)
+            Catch ex As Exception
+                reg2.SetValue("chkUpdAtStartup", chkUpdAtStartup)
+            End Try
+        End If
     End Sub
 
     Private Sub btn_setting_Click(sender As Object, e As EventArgs) Handles btn_setting.Click
         Setting.chkUpd.Text = chkUpd
         Setting.downloadUpd.Text = downloadUpd
+        Setting.chkUpdAtStartup.Checked = (chkUpdAtStartup = 1)
         If Setting.ShowDialog = DialogResult.OK Then
             chkUpd = Setting.chkUpd.Text
             downloadUpd = Setting.downloadUpd.Text
+            If Setting.chkUpdAtStartup.Checked Then
+                chkUpdAtStartup = 1
+            Else
+                chkUpdAtStartup = 0
+            End If
             Dim reg2 As RegistryKey = reg1.OpenSubKey("Clock-1.0", True)
             reg2.SetValue("chk", chkUpd)
             reg2.SetValue("download", downloadUpd)
+            reg2.SetValue("chkUpdAtStartup", chkUpdAtStartup)
         End If
     End Sub
 End Class

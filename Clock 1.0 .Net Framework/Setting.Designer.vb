@@ -30,6 +30,7 @@ Partial Class Setting
         Me.l1 = New System.Windows.Forms.Label()
         Me.l2 = New System.Windows.Forms.Label()
         Me.downloadUpd = New System.Windows.Forms.TextBox()
+        Me.chkUpdAtStartup = New System.Windows.Forms.CheckBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -109,6 +110,16 @@ Partial Class Setting
         Me.downloadUpd.Size = New System.Drawing.Size(431, 22)
         Me.downloadUpd.TabIndex = 4
         '
+        'chkUpdAtStartup
+        '
+        Me.chkUpdAtStartup.AutoSize = True
+        Me.chkUpdAtStartup.Location = New System.Drawing.Point(12, 73)
+        Me.chkUpdAtStartup.Name = "chkUpdAtStartup"
+        Me.chkUpdAtStartup.Size = New System.Drawing.Size(306, 18)
+        Me.chkUpdAtStartup.TabIndex = 5
+        Me.chkUpdAtStartup.Text = "Check for updates when this program runs"
+        Me.chkUpdAtStartup.UseVisualStyleBackColor = True
+        '
         'Setting
         '
         Me.AcceptButton = Me.OK_Button
@@ -117,6 +128,7 @@ Partial Class Setting
         Me.BackColor = System.Drawing.Color.Black
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(615, 110)
+        Me.Controls.Add(Me.chkUpdAtStartup)
         Me.Controls.Add(Me.downloadUpd)
         Me.Controls.Add(Me.l2)
         Me.Controls.Add(Me.l1)
@@ -144,4 +156,5 @@ Partial Class Setting
     Friend WithEvents l1 As Label
     Friend WithEvents l2 As Label
     Friend WithEvents downloadUpd As TextBox
+    Friend WithEvents chkUpdAtStartup As CheckBox
 End Class
