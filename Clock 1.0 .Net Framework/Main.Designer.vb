@@ -26,9 +26,10 @@ Partial Class Main
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.pb = New System.Windows.Forms.PictureBox()
         Me.tmr1 = New System.Windows.Forms.Timer(Me.components)
-        Me.btn_about = New System.Windows.Forms.Button()
         Me.btn_upd = New System.Windows.Forms.Button()
         Me.currentVer = New System.Windows.Forms.Label()
+        Me.btn_about = New System.Windows.Forms.Button()
+        Me.btn_setting = New System.Windows.Forms.Button()
         CType(Me.pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -44,20 +45,6 @@ Partial Class Main
         'tmr1
         '
         Me.tmr1.Interval = 1
-        '
-        'btn_about
-        '
-        Me.btn_about.BackColor = System.Drawing.Color.Black
-        Me.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_about.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_about.ForeColor = System.Drawing.Color.Lime
-        Me.btn_about.Location = New System.Drawing.Point(0, 426)
-        Me.btn_about.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btn_about.Name = "btn_about"
-        Me.btn_about.Size = New System.Drawing.Size(75, 23)
-        Me.btn_about.TabIndex = 1
-        Me.btn_about.Text = "About"
-        Me.btn_about.UseVisualStyleBackColor = False
         '
         'btn_upd
         '
@@ -80,7 +67,35 @@ Partial Class Main
         Me.currentVer.Name = "currentVer"
         Me.currentVer.Size = New System.Drawing.Size(175, 14)
         Me.currentVer.TabIndex = 3
-        Me.currentVer.Text = "Current version: 2.0.0.0"
+        Me.currentVer.Text = "Current version: -.-.-.-"
+        '
+        'btn_about
+        '
+        Me.btn_about.BackColor = System.Drawing.Color.Black
+        Me.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_about.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_about.ForeColor = System.Drawing.Color.Lime
+        Me.btn_about.Location = New System.Drawing.Point(0, 426)
+        Me.btn_about.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_about.Name = "btn_about"
+        Me.btn_about.Size = New System.Drawing.Size(75, 23)
+        Me.btn_about.TabIndex = 1
+        Me.btn_about.Text = "About"
+        Me.btn_about.UseVisualStyleBackColor = False
+        '
+        'btn_setting
+        '
+        Me.btn_setting.BackColor = System.Drawing.Color.Black
+        Me.btn_setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_setting.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_setting.ForeColor = System.Drawing.Color.Lime
+        Me.btn_setting.Location = New System.Drawing.Point(391, 426)
+        Me.btn_setting.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_setting.Name = "btn_setting"
+        Me.btn_setting.Size = New System.Drawing.Size(75, 23)
+        Me.btn_setting.TabIndex = 4
+        Me.btn_setting.Text = "Setting"
+        Me.btn_setting.UseVisualStyleBackColor = False
         '
         'Main
         '
@@ -88,6 +103,7 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(800, 449)
+        Me.Controls.Add(Me.btn_setting)
         Me.Controls.Add(Me.currentVer)
         Me.Controls.Add(Me.btn_upd)
         Me.Controls.Add(Me.btn_about)
@@ -107,7 +123,8 @@ Partial Class Main
 
     Friend WithEvents pb As PictureBox
     Friend WithEvents tmr1 As Timer
-    Friend WithEvents btn_about As Button
     Friend WithEvents btn_upd As Button
     Friend WithEvents currentVer As Label
+    Friend WithEvents btn_about As Button
+    Friend WithEvents btn_setting As Button
 End Class

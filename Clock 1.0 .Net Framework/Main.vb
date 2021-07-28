@@ -1,6 +1,8 @@
 ﻿Imports System.ComponentModel
 Imports System.Net
 Imports System.IO
+Imports Microsoft.Win32
+Imports System.Windows.Forms
 
 Public Class Main
     Dim f1 As Color = Color.FromArgb(0, 255, 0)
@@ -16,7 +18,10 @@ Public Class Main
     Private WithEvents wc As WebClient
     Dim sP As String
     Dim sF As String
+    Dim reg1 As RegistryKey = Registry.CurrentUser.OpenSubKey("Software", True)
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        chk_reg()
         setTime(2)
         tmr1.Start()
         currentVer.Text = "Current version: " & Application.ProductVersion
@@ -235,6 +240,7 @@ Public Class Main
         btn_about.Location = New Point(0, Size.Height - 62)
         btn_upd.Location = New Point(75, Size.Height - 62)
         currentVer.Location = New Point(216, Size.Height - 58)
+        btn_setting.Location = New Point(391, Size.Height - 62)
     End Sub
 
     Private Sub setTime(n As Integer)
@@ -335,5 +341,34 @@ Public Class Main
         fillEllip(f1, -100, 0, 5, 5, 100)
         drawLine(f1, -100, 0, -100 + ((e.BytesReceived / e.TotalBytesToReceive) * 200), 0)
         fillEllip(f1, 100, 0, 5, 5, 100)
+    End Sub
+
+    Private Sub chk_reg()
+        If Not (reg1.GetSubKeyNames.Contains("Clock-1.0")) Then
+            reg1.CreateSubKey("Clock-1.0")
+        End If
+        Dim reg2 As RegistryKey = reg1.OpenSubKey("Clock-1.0", True)
+        If reg2.GetValue("chk") = Nothing Then
+            reg2.SetValue("chk", chkUpd)
+        Else
+            chkUpd = reg2.GetValue("chk").ToString.Trim
+        End If
+        If reg2.GetValue("download") = Nothing Then
+            reg2.SetValue("download", downloadUpd)
+        Else
+            downloadUpd = reg2.GetValue("download").ToString.Trim
+        End If
+    End Sub
+
+    Private Sub btn_setting_Click(sender As Object, e As EventArgs) Handles btn_setting.Click
+        Setting.chkUpd.Text = chkUpd
+        Setting.downloadUpd.Text = downloadUpd
+        If Setting.ShowDialog = DialogResult.OK Then
+            chkUpd = Setting.chkUpd.Text
+            downloadUpd = Setting.downloadUpd.Text
+            Dim reg2 As RegistryKey = reg1.OpenSubKey("Clock-1.0", True)
+            reg2.SetValue("chk", chkUpd)
+            reg2.SetValue("download", downloadUpd)
+        End If
     End Sub
 End Class

@@ -11,3 +11,4 @@ C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.pdb
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.About.resources
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.Main.resources
+C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.Setting.resources
