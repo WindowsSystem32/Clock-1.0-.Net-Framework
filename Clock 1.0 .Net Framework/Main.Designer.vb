@@ -30,6 +30,7 @@ Partial Class Main
         Me.currentVer = New System.Windows.Forms.Label()
         Me.btn_about = New System.Windows.Forms.Button()
         Me.btn_setting = New System.Windows.Forms.Button()
+        Me.btn_debug = New System.Windows.Forms.Button()
         CType(Me.pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -97,12 +98,27 @@ Partial Class Main
         Me.btn_setting.Text = "Setting"
         Me.btn_setting.UseVisualStyleBackColor = False
         '
+        'btn_debug
+        '
+        Me.btn_debug.BackColor = System.Drawing.Color.Black
+        Me.btn_debug.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_debug.Font = New System.Drawing.Font("Consolas", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_debug.ForeColor = System.Drawing.Color.Lime
+        Me.btn_debug.Location = New System.Drawing.Point(466, 426)
+        Me.btn_debug.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btn_debug.Name = "btn_debug"
+        Me.btn_debug.Size = New System.Drawing.Size(75, 23)
+        Me.btn_debug.TabIndex = 5
+        Me.btn_debug.Text = "Debug"
+        Me.btn_debug.UseVisualStyleBackColor = False
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(800, 449)
+        Me.Controls.Add(Me.btn_debug)
         Me.Controls.Add(Me.btn_setting)
         Me.Controls.Add(Me.currentVer)
         Me.Controls.Add(Me.btn_upd)
@@ -112,7 +128,7 @@ Partial Class Main
         Me.ForeColor = System.Drawing.Color.Lime
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.MinimumSize = New System.Drawing.Size(688, 246)
+        Me.MinimumSize = New System.Drawing.Size(688, 222)
         Me.Name = "Main"
         Me.Text = "Clock 1.0 (.NET Framework 4.8) by WindowsSystem32"
         CType(Me.pb, System.ComponentModel.ISupportInitialize).EndInit()
@@ -127,4 +143,5 @@ Partial Class Main
     Friend WithEvents currentVer As Label
     Friend WithEvents btn_about As Button
     Friend WithEvents btn_setting As Button
+    Friend WithEvents btn_debug As Button
 End Class

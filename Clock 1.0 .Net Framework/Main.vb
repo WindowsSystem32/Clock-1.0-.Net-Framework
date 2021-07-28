@@ -2,7 +2,6 @@
 Imports System.Net
 Imports System.IO
 Imports Microsoft.Win32
-Imports System.Windows.Forms
 
 Public Class Main
     Dim f1 As Color = Color.FromArgb(0, 255, 0)
@@ -52,6 +51,9 @@ Public Class Main
     End Function
 
     Private Sub tmr1_Tick(sender As Object, e As EventArgs) Handles tmr1.Tick
+        If btn_debug.Text = "Stop" Then
+            Debug_Form.rtb.Text = "lev: " & lev & "," & vbCrLf & "num: {" & num(0) & ", " & num(1) & ", " & num(2) & ", " & num(3) & ", " & num(4) & ", " & num(5) & "}," & vbCrLf & "chkUpd: " & chkUpd & "," & vbCrLf & "downloadUpd: " & downloadUpd & "," & vbCrLf & "chkUpdAtStartup: " & chkUpdAtStartup
+        End If
         If lev >= 5 Then
             setTime(1)
             Do Until Not (num(2) = num(5))
@@ -144,7 +146,7 @@ Public Class Main
         pb.CreateGraphics.Clear(b1)
     End Sub
 
-    Private Sub seg(loc As Point, inf1 As Integer, inf2 As Integer, lev As Integer) 'wid: 88, hei: 184'
+    Private Sub seg(loc As Point, inf1 As Integer, inf2 As Integer, lev As Integer) 'wid: 88, hei: 160'
         '_A_'
         'B_C'
         '_D_'
@@ -238,11 +240,12 @@ Public Class Main
     End Function
 
     Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles Me.Resize
-        pb.Size = New Size(Size.Width - 16, Size.Height - 87)
+        pb.Size = New Size(Size.Width - 16, Size.Height - 62)
         btn_about.Location = New Point(0, Size.Height - 62)
         btn_upd.Location = New Point(75, Size.Height - 62)
         currentVer.Location = New Point(216, Size.Height - 58)
-        btn_setting.Location = New Point(391, Size.Height - 62)
+        btn_setting.Location = New Point(216 + currentVer.Size.Width, Size.Height - 62)
+        btn_debug.Location = New Point(291 + currentVer.Size.Width, Size.Height - 62)
     End Sub
 
     Private Sub setTime(n As Integer)
@@ -328,10 +331,10 @@ Public Class Main
     End Sub
 
     Private Sub wc_DownloadFileCompleted(sender As Object, e As AsyncCompletedEventArgs) Handles wc.DownloadFileCompleted
-        Dim cmd As String = "cmd /C timeout -t 1 && move " & Chr(34) & sP & "\" & sF & Chr(34) & " " & Chr(34) & Application.ExecutablePath & Chr(34) & " && rmdir /s /q " & Chr(34) & sP & Chr(34) & " && " & Chr(34) & Application.ExecutablePath & Chr(34)
+        Dim cmd As String = "cmd /C timeout -t 1 && move " & Chr(34) & sP & "\" & sF & Chr(34) & " " & Chr(34) & Application.ExecutablePath & Chr(34) & " && rmdir /s /q " & Chr(34) & sP & Chr(34) & " && " & Chr(34) & Application.ExecutablePath & Chr(34) & " && exit"
         'MsgBox("Command: " & cmd)'
         If File.Exists(sP & "\" & sF) Then
-            Shell(cmd)
+            Shell(cmd, AppWinStyle.Hide)
             Close()
         Else
             MsgBox("There was a problem downloading updates!", vbCritical, "")
@@ -339,9 +342,15 @@ Public Class Main
     End Sub
 
     Private Sub wc_DownloadProgressChanged(sender As Object, e As DownloadProgressChangedEventArgs) Handles wc.DownloadProgressChanged
+        Dim TotalBytesToReceive As Integer = e.TotalBytesToReceive
+        Dim BytesReceived1 As Integer = e.BytesReceived
+        Dim BytesReceived2 As Integer = ((e.BytesReceived / e.TotalBytesToReceive) * 200)
+        If btn_debug.Text = "Stop" Then
+            Debug_Form.rtb.Text = "lev: " & lev & "," & vbCrLf & "num: {" & num(0) & ", " & num(1) & ", " & num(2) & ", " & num(3) & ", " & num(4) & ", " & num(5) & "}," & vbCrLf & "chkUpd: " & chkUpd & "," & vbCrLf & "downloadUpd: " & downloadUpd & "," & vbCrLf & "chkUpdAtStartup: " & chkUpdAtStartup & "," & vbCrLf & "sP: " & sP & "," & vbCrLf & "sF: " & sF & "," & vbCrLf & "TotalBytesToReceive: " & TotalBytesToReceive & "," & vbCrLf & "BytesReceived: " & BytesReceived1 & "(" & BytesReceived2 & "%)"
+        End If
         clear()
         fillEllip(f1, -100, 0, 5, 5, 100)
-        drawLine(f1, -100, 0, -100 + ((e.BytesReceived / e.TotalBytesToReceive) * 200), 0)
+        drawLine(f1, -100, 0, -100 + BytesReceived2, 0)
         fillEllip(f1, 100, 0, 5, 5, 100)
     End Sub
 
@@ -387,6 +396,16 @@ Public Class Main
             reg2.SetValue("chk", chkUpd)
             reg2.SetValue("download", downloadUpd)
             reg2.SetValue("chkUpdAtStartup", chkUpdAtStartup)
+        End If
+    End Sub
+
+    Private Sub btn_debug_Click(sender As Object, e As EventArgs) Handles btn_debug.Click
+        If btn_debug.Text = "Debug" Then
+            Debug_Form.Show()
+            btn_debug.Text = "Stop"
+        Else
+            Debug_Form.Close()
+            btn_debug.Text = "Debug"
         End If
     End Sub
 End Class
