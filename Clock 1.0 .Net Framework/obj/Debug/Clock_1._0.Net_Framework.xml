@@ -22,6 +22,21 @@ Clock_1._0.Net_Framework
   재정의합니다.
 </summary>
 </member>
+<member name="P:Clock_1._0.Net_Framework.My.Resources.Resources.dot">
+<summary>
+  System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+</summary>
+</member>
+<member name="P:Clock_1._0.Net_Framework.My.Resources.Resources.seg0">
+<summary>
+  System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+</summary>
+</member>
+<member name="P:Clock_1._0.Net_Framework.My.Resources.Resources.seg1">
+<summary>
+  System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+</summary>
+</member>
 <member name="P:Clock_1._0.Net_Framework.My.Resources.Resources.WindowsSystem32_Logo">
 <summary>
   (아이콘)과(와) 유사한 System.Drawing.Icon 형식의 지역화된 리소스를 찾습니다.

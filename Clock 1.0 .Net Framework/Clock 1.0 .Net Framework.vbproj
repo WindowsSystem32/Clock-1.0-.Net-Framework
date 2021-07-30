@@ -159,5 +159,14 @@
   <ItemGroup>
     <None Include="Resources\WindowsSystem32_Logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seg0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dot.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

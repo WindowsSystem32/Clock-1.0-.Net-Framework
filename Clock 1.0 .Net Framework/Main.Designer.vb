@@ -31,6 +31,7 @@ Partial Class Main
         Me.btn_about = New System.Windows.Forms.Button()
         Me.btn_setting = New System.Windows.Forms.Button()
         Me.btn_debug = New System.Windows.Forms.Button()
+        Me.chk_useImg = New System.Windows.Forms.CheckBox()
         CType(Me.pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -112,12 +113,23 @@ Partial Class Main
         Me.btn_debug.Text = "Debug"
         Me.btn_debug.UseVisualStyleBackColor = False
         '
+        'chk_useImg
+        '
+        Me.chk_useImg.AutoSize = True
+        Me.chk_useImg.Location = New System.Drawing.Point(541, 429)
+        Me.chk_useImg.Name = "chk_useImg"
+        Me.chk_useImg.Size = New System.Drawing.Size(89, 18)
+        Me.chk_useImg.TabIndex = 6
+        Me.chk_useImg.Text = "Use image"
+        Me.chk_useImg.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
         Me.ClientSize = New System.Drawing.Size(800, 449)
+        Me.Controls.Add(Me.chk_useImg)
         Me.Controls.Add(Me.btn_debug)
         Me.Controls.Add(Me.btn_setting)
         Me.Controls.Add(Me.currentVer)
@@ -144,4 +156,5 @@ Partial Class Main
     Friend WithEvents btn_about As Button
     Friend WithEvents btn_setting As Button
     Friend WithEvents btn_debug As Button
+    Friend WithEvents chk_useImg As CheckBox
 End Class

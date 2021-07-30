@@ -12,3 +12,4 @@ C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.Main.resources
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.Setting.resources
 C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock_1._0.Net_Framework.Debug_Form.resources
+C:\Users\User\source\repos\Clock 1.0 .Net Framework\Clock 1.0 .Net Framework\obj\Debug\Clock 1.0 .Net Framework.vbproj.AssemblyReference.cache

@@ -17,6 +17,7 @@ Public Class Main
     Dim sP As String
     Dim sF As String
     Dim reg1 As RegistryKey = Registry.CurrentUser.OpenSubKey("Software", True)
+    Dim useImg As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         chk_reg()
@@ -92,14 +93,24 @@ Public Class Main
             seg(New Point(-292, 0), h3, h1, lev)
             seg(New Point(-188, 0), h4, h2, lev)
             If num(5) Mod 2 = 0 Then
-                fillEllip(f1, -120, -36, 16, 16, 100)
-                fillEllip(f1, -120, 36, 16, 16, 100)
+                If useImg Then
+                    drawImg(My.Resources.dot, -120, -36, 64, 64, 100)
+                    drawImg(My.Resources.dot, -120, 36, 64, 64, 100)
+                Else
+                    fillEllip(f1, -120, -36, 16, 16, 100)
+                    fillEllip(f1, -120, 36, 16, 16, 100)
+                End If
             End If
             seg(New Point(-52, 0), m3, m1, lev)
             seg(New Point(52, 0), m4, m2, lev)
             If num(5) Mod 2 = 0 Then
-                fillEllip(f1, 120, -36, 16, 16, 100)
-                fillEllip(f1, 120, 36, 16, 16, 100)
+                If useImg Then
+                    drawImg(My.Resources.dot, 120, -36, 64, 64, 100)
+                    drawImg(My.Resources.dot, 120, 36, 64, 64, 100)
+                Else
+                    fillEllip(f1, 120, -36, 16, 16, 100)
+                    fillEllip(f1, 120, 36, 16, 16, 100)
+                End If
             End If
             seg(New Point(188, 0), s3, s1, lev)
             seg(New Point(292, 0), s4, s2, lev)
@@ -161,13 +172,23 @@ Public Class Main
         sz2 = segf1(inf2)
         sz3 = segc2(sz1, sz2, lev)
         'sz3 = sz1'
-        fillRect(f1, 0 + sx, -72 + sy + sz3(7), 56, 16, sz3(0)) 'A'
-        fillRect(f1, -36 + sx + sz3(8), -36 + sy, 16, 56, sz3(1)) 'B'
-        fillRect(f1, 36 + sx + sz3(9), -36 + sy, 16, 56, sz3(2)) 'C'
-        fillRect(f1, 0 + sx, 0 + sy, 56, 16, sz3(3)) 'D'
-        fillRect(f1, -36 + sx + sz3(10), 36 + sy, 16, 56, sz3(4)) 'E'
-        fillRect(f1, 36 + sx + sz3(11), 36 + sy, 16, 56, sz3(5)) 'F'
-        fillRect(f1, 0 + sx, 72 + sy + sz3(12), 56, 16, sz3(6)) 'G'
+        If useImg Then
+            drawImg(My.Resources.seg0, 0 + sx, -72 + sy + sz3(7), 104, 64, sz3(0)) 'A'
+            drawImg(My.Resources.seg1, -36 + sx + sz3(8), -36 + sy, 64, 104, sz3(1)) 'B'
+            drawImg(My.Resources.seg1, 36 + sx + sz3(9), -36 + sy, 64, 104, sz3(2)) 'C'
+            drawImg(My.Resources.seg0, 0 + sx, 0 + sy, 104, 64, sz3(3)) 'D'
+            drawImg(My.Resources.seg1, -36 + sx + sz3(10), 36 + sy, 64, 104, sz3(4)) 'E'
+            drawImg(My.Resources.seg1, 36 + sx + sz3(11), 36 + sy, 64, 104, sz3(5)) 'F'
+            drawImg(My.Resources.seg0, 0 + sx, 72 + sy + sz3(12), 104, 64, sz3(6)) 'G'
+        Else
+            fillRect(f1, 0 + sx, -72 + sy + sz3(7), 56, 16, sz3(0)) 'A'
+            fillRect(f1, -36 + sx + sz3(8), -36 + sy, 16, 56, sz3(1)) 'B'
+            fillRect(f1, 36 + sx + sz3(9), -36 + sy, 16, 56, sz3(2)) 'C'
+            fillRect(f1, 0 + sx, 0 + sy, 56, 16, sz3(3)) 'D'
+            fillRect(f1, -36 + sx + sz3(10), 36 + sy, 16, 56, sz3(4)) 'E'
+            fillRect(f1, 36 + sx + sz3(11), 36 + sy, 16, 56, sz3(5)) 'F'
+            fillRect(f1, 0 + sx, 72 + sy + sz3(12), 56, 16, sz3(6)) 'G'
+        End If
     End Sub
 
     Private Function segf1(input As Integer)
@@ -246,6 +267,7 @@ Public Class Main
         currentVer.Location = New Point(216, Size.Height - 58)
         btn_setting.Location = New Point(216 + currentVer.Size.Width, Size.Height - 62)
         btn_debug.Location = New Point(291 + currentVer.Size.Width, Size.Height - 62)
+        chk_useImg.Location = New Point(366 + currentVer.Size.Width, Size.Height - 59)
     End Sub
 
     Private Sub setTime(n As Integer)
@@ -407,5 +429,9 @@ Public Class Main
             Debug_Form.Close()
             btn_debug.Text = "Debug"
         End If
+    End Sub
+
+    Private Sub chk_useImg_CheckedChanged(sender As Object, e As EventArgs) Handles chk_useImg.CheckedChanged
+        useImg = chk_useImg.Checked
     End Sub
 End Class
