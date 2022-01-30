@@ -1,2 +1,2 @@
 # Clock-1.0-.Net-Framework
-You will need .Net Framework 4.8 to run this program.
+닷넷 프레임워크 4.8이 필요합니다.
